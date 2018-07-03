@@ -5,9 +5,11 @@ import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
+@Parcel
 public class Book {
     private String openLibraryId;
     private String author;
@@ -29,6 +31,19 @@ public class Book {
     public String getCoverUrl() {
         return "http://covers.openlibrary.org/b/olid/" + openLibraryId + "-L.jpg?default=false";
     }
+
+    public Book() {
+
+    }
+
+    public Book(String openLibraryId, String author, String title) {
+        this.openLibraryId = openLibraryId;
+        this.author = author;
+        this.title = title;
+
+    }
+
+
 
     // Returns a Book given the expected JSON
     public static Book fromJson(JSONObject jsonObject) {

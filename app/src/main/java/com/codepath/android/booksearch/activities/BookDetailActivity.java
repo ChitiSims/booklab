@@ -7,7 +7,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codepath.android.booksearch.GlideApp;
 import com.codepath.android.booksearch.R;
+import com.codepath.android.booksearch.models.Book;
+
+import org.parceler.Parcels;
 
 public class BookDetailActivity extends AppCompatActivity {
     private ImageView ivBookCover;
@@ -25,7 +29,18 @@ public class BookDetailActivity extends AppCompatActivity {
 
         // Extract book object from intent extras
 
+        Book book = (Book) Parcels.unwrap(getIntent().getParcelableExtra("book"));
+
         // Use book object to populate data into views
+        tvTitle.setText(book.getTitle());
+        tvAuthor.setText(book.getAuthor());
+        GlideApp.with(this)
+                .load(book.getCoverUrl())
+                .into(ivBookCover);
+
+
+        setTitle(book.getTitle());
+
     }
 
 
